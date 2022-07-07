@@ -1,14 +1,13 @@
 package com.example.inventory
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.inventory.data.Item
 import com.example.inventory.data.ItemDao
 import kotlinx.coroutines.launch
 
 class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
 
+    val allItems: LiveData<List<Item>> = itemDao.getItems().asLiveData()
 
     class InventoryViewModelFactory(private val itemDao: ItemDao) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
