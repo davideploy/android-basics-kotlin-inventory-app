@@ -43,7 +43,7 @@ class ItemListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = ItemListFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -51,8 +51,14 @@ class ItemListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+
         val adapter = ItemListAdapter {
+            val action =   ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment(it.id)
+            this.findNavController().navigate(action)
         }
+
         binding.recyclerView.adapter = adapter
 
         viewModel.allItems.observe(this.viewLifecycleOwner) { items ->
