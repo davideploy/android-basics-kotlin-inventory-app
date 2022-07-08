@@ -51,8 +51,14 @@ class ItemDetailFragment : Fragment() {
             itemName.text = item.itemName
             itemPrice.text = item.getFormattedPrice()
             itemCount.text = item.quantityInStock.toString()
+            sellItem.setOnClickListener { viewModel.sellItem(item) }
+            sellItem.isEnabled = viewModel.isStockAvailable(item)
+            sellItem.setOnClickListener { viewModel.sellItem(item) }
+            deleteItem.setOnClickListener { showConfirmationDialog() }
         }
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -92,6 +98,7 @@ class ItemDetailFragment : Fragment() {
      * Deletes the current item and navigates to the list fragment.
      */
     private fun deleteItem() {
+        viewModel.deleteItem(item)
         findNavController().navigateUp()
     }
 
@@ -102,4 +109,6 @@ class ItemDetailFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
