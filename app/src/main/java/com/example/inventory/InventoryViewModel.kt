@@ -1,6 +1,7 @@
 package com.example.inventory
 
 import androidx.lifecycle.*
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.example.inventory.data.Item
 import com.example.inventory.data.ItemDao
 import kotlinx.coroutines.launch
@@ -53,6 +54,30 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
         }
     }
 
+    private fun getUpdatedItemEntry(
+        itemId: Int,
+        itemName: String,
+        itemPrice: String,
+        itemCount: String
+    ): Item {
+        return Item(
+            id = itemId,
+            itemName = itemName,
+            itemPrice = itemPrice.toDouble(),
+            quantityInStock = itemCount.toInt()
+        )
+    }
+
+    fun updateItem(
+        itemId: Int,
+        itemName: String,
+        itemPrice: String,
+        itemCount: String
+    ) {
+        val updatedItem = getUpdatedItemEntry(itemId, itemName, itemPrice, itemCount)
+        updateItem(updatedItem)
+    }
+
     private fun getNewItemEntry(itemName: String, itemPrice: String, itemCount: String): Item {
         return Item(
             itemName = itemName,
@@ -60,6 +85,8 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
             quantityInStock = itemCount.toInt()
         )
     }
+
+
 
     fun addNewItem(itemName: String, itemPrice: String, itemCount: String) {
         val newItem = getNewItemEntry(itemName, itemPrice, itemCount)
