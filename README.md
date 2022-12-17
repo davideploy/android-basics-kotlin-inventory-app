@@ -18,14 +18,12 @@ The app also leverages [ViewModel](https://developer.android.com/topic/libraries
 and [Navigation](https://developer.android.com/topic/libraries/architecture/navigation/)
 with the SafeArgs plugin for parameter passing between fragments.
 
-Pre-requisites
+What I studied:
 --------------
-
-You need to know:
-- How to create and use fragments.
-- How to navigate between fragments, and use safeArgs to pass data between fragments.
-- How to use architecture components including ViewModel, LiveData, and LiveData transformations.
-- How to use coroutines for long-running tasks.
+- Fragments.
+- Navigate between fragments, and use safeArgs to pass data between fragments.
+- Architecture components including ViewModel, LiveData, and LiveData transformations.
+- Coroutines for long-running tasks.
 - RecyclerView and adapters
 - SQLite database and the SQLite query language
 
